@@ -1,0 +1,10 @@
+# Ignore virtual environment
+/venv/
+/story_server/venv
+
+# Ignore Python cache files
+*.pyc
+*.pyo
+__pycache__/
+
+.DS_store
