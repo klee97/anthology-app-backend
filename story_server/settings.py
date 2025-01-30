@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-58w9sr18di6jo=#v6ew!-q^*nepk-wiwjs_!$@$5y-^ttl3boq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["anthology.rcdis.co", "localhost", "127.0.0.1"]
 
 
 # Application definition
