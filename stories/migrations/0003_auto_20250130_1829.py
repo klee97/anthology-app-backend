@@ -28,6 +28,4 @@ class Migration(migrations.Migration):
     dependencies = [
         ('stories', '0002_remove_story_published_in'),
     ]
-
-   operations = [migrations.RunPython(generate_superuser)]
-
+    operations = [migrations.RunPython(generate_superuser)]
