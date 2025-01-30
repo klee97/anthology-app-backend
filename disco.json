@@ -2,7 +2,7 @@
   "version": "1.0",
   "services": {
       "web": {
-          "command": "python manage.py migrate && python manage.py runserver",
+          "command": "python manage.py runserver",
           "port": 8000
       }
   }
