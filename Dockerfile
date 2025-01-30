@@ -8,5 +8,5 @@ COPY . /app
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
-# Run migrations
-CMD ["sh", "-c", "python manage.py migrate"]
+# # Run migrations
+# CMD ["sh", "-c", "python manage.py migrate"]
