@@ -8,5 +8,5 @@ COPY . /app
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
-# Run migrations and start the server
-# CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Run migrations
+CMD ["sh", "-c", "python manage.py migrate"]
