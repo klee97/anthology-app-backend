@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+# import os
+# import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -75,7 +76,9 @@ WSGI_APPLICATION = 'story_server.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': #dj_database_url.config(default=os.getenv('DATABASE_URL')),
+    #'local': 
+    {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stories_db',
         'USER': 'stories_user',
@@ -83,6 +86,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+    
 }
 
 
