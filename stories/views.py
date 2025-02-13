@@ -16,8 +16,8 @@ def all_stories(request):
   return JsonResponse(list(stories), safe=False)
 
 
-def reader_story_evals(request, user_id):
-    user = get_object_or_404(User, id=user_id)  # Fetch the user by ID
+def reader_story_evals(request, username):
+    user = get_object_or_404(User, id=username)  # Fetch the user by ID
     reader = get_object_or_404(Reader, user=user)  # Get the Reader profile
 
     # Fetch story evaluations for the reader
