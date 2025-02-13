@@ -37,6 +37,7 @@ def reader_story_evals(request, username):
             },
             "dateStarted": eval.dateStarted.strftime("%Y-%m-%d") if eval.dateStarted else None,
             "dateFinished": eval.dateFinished.strftime("%Y-%m-%d") if eval.dateFinished else None,
+            "dateAdded": eval.dateAdded.strftime("%Y-%m-%d") if eval.dateAdded else None,
             "rating": eval.rating,
             "status": eval.status,
         }
