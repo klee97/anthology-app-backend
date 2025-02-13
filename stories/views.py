@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 
 from .models import Story
 from .models import StoryEval, Reader
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def detail(request, id):
