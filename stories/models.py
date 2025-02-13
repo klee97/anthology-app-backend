@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from datetime import date
 
 import uuid
 
@@ -32,6 +33,7 @@ class StoryEval(models.Model):
     )
     dateFinished = models.DateField()
     dateStarted = models.DateField()
+    dateAdded = models.DateField(default=date.today)
     rating = models.IntegerField(default=0)
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name="evaluations")
     reader = models.ForeignKey("Reader", on_delete=models.CASCADE, related_name="evaluations")
