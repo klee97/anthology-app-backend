@@ -19,7 +19,7 @@ def all_stories(request):
 
 
 def reader_story_evals(request, username):
-    user = get_object_or_404(User, id=username)  # Fetch the user by ID
+    user = get_object_or_404(User, username=username)  # Fetch the user by ID
     reader = get_object_or_404(Reader, user=user)  # Get the Reader profile
 
     # Fetch story evaluations for the reader
