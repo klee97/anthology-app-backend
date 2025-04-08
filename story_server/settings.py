@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'story_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 env = environ.Env()
+env.read_env(str(BASE_DIR) + '/.env')
 DATABASE_URL = env.str('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL),
