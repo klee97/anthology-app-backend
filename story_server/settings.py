@@ -29,7 +29,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["anthology.rcdis.co", "localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS=['https://*.anthology.rcdis.co', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS=['https://*.anthology.rcdis.co', 'http://localhost:3000']
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
