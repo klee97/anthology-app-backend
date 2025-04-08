@@ -1,21 +1,26 @@
 from django.core.serializers import serialize
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
+from rest_framework.parsers import JSONParser
 from django.shortcuts import get_object_or_404
 
 from .models import Story
 from .models import StoryEval, Reader
+from .serializers import StorySerializer
 from django.contrib.auth.models import User
-
-# Create your views here.
 
 def detail(request, id):
   story = Story.objects.get(id=id)
   story_json = serialize('json', [story])
   return JsonResponse(story_json, safe=False)
 
-def all_stories(request):
-  stories = Story.objects.values('id', 'title', 'author')
-  return JsonResponse(list(stories), safe=False)
+def stories_list(request):
+    """
+    List all stories
+    """
+    if request.method == 'GET':
+        stories = Story.objects.all()
+        serializer = StorySerializer(stories, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
 def reader_story_evals(request, username):
