@@ -2,9 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from datetime import date
-
 import uuid
-
 
 class Story(models.Model):
     title = models.CharField(max_length=255)
@@ -15,12 +13,12 @@ class Story(models.Model):
         default=uuid.uuid4,  # Automatically generate a new UUID
         editable=False       # Prevent manual editing of the UUID
     )
-    
-    def __str__(self):        
+
+    def __str__(self):
         return self.title
 
 class StoryEval(models.Model):
-    
+
     class Status(models.TextChoices):
         UNREAD = 'UR', _('Unread')
         IN_PROGRESS = 'IP', _('In Progress')
@@ -44,9 +42,10 @@ class StoryEval(models.Model):
     )
     class Meta:
         unique_together = ("story", "reader")  # Prevents duplicate evaluations from the same reader
-        
+
     def __str__(self):
         return f"{self.reader.user.username} -> {self.story.title} ({self.rating})"
+
 class Reader(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="reader")
     id = models.UUIDField(
@@ -54,9 +53,6 @@ class Reader(models.Model):
         default=uuid.uuid4,  # Automatically generate a new UUID
         editable=False       # Prevent manual editing of the UUID
     )
-    
+
     def __str__(self):
         return f"Reader: {self.user.username}"
-
-
-    
