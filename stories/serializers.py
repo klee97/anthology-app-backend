@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from stories.models import Story
+from stories.models import Story, Reader
 from django.contrib.auth import get_user_model
 
 class StorySerializer(serializers.ModelSerializer):
@@ -8,6 +8,9 @@ class StorySerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'author', 'link']
 
 User = get_user_model()
+
+def create_reader(user):
+    Reader.objects.create(user=user)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,4 +22,8 @@ class UserSerializer(serializers.ModelSerializer):
         user = User(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
+
+        # Create associated Reader object when a new user signs up
+        create_reader(user)
+
         return user
