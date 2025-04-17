@@ -25,11 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-58w9sr18di6jo=unusedsecretkey'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["anthology.rcdis.co", "localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS=['https://*.anthology.rcdis.co', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS=['https://*.anthology.rcdis.co', 'http://localhost:3000']
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
@@ -49,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "stories"
+    'rest_framework',
+    'rest_framework.authtoken',
+    'stories'
 ]
 
 MIDDLEWARE = [
@@ -87,6 +91,7 @@ WSGI_APPLICATION = 'story_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 env = environ.Env()
+env.read_env(str(BASE_DIR) + '/.env')
 DATABASE_URL = env.str('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL),
@@ -142,3 +147,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
